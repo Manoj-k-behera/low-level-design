@@ -1,0 +1,69 @@
+@startuml
+interface ATMState {
+  +insertCard(card)
+  +ejectCard()
+  +enterPIN(pin)
+  +withdraw(amount)
+}
+
+class ATM {
+  -state: ATMState
+  -currentCard: Card
+  +insertCard()
+  +enterPIN()
+  +withdraw()
+  +ejectCard()
+}
+
+class IdleState
+class CardInsertedState
+class PinVerifiedState
+class OutOfServiceState
+
+ATMState <|.. IdleState
+ATMState <|.. CardInsertedState
+ATMState <|.. PinVerifiedState
+ATMState <|.. OutOfServiceState
+
+ATM *-- ATMState
+ATM o-- CashDispenser
+ATM o-- BankService
+ATM o-- TransactionService
+ATM --> Card
+
+class Card {
+  cardNumber
+  pinRetries
+  blocked
+}
+
+class Account {
+  accountNumber
+  balance
+}
+
+class BankService {
+  +validatePin()
+  +getAccount()
+}
+
+class CashDispenser {
+  cashAvailable
+  +hasCash()
+  +dispense()
+}
+
+class Transaction {
+  transactionId
+  amount
+  status
+  timestamp
+}
+
+class TransactionService {
+  +record()
+}
+
+Card --> Account
+TransactionService --> Transaction
+@enduml

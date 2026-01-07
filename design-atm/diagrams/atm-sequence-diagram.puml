@@ -1,0 +1,23 @@
+@startuml
+actor User
+participant ATM
+participant ATMState
+participant BankService
+participant Account
+participant CashDispenser
+participant TransactionService
+
+User -> ATM : insertCard(card)
+ATM -> ATMState : insertCard()
+
+User -> ATM : enterPIN(pin)
+ATM -> BankService : validatePin()
+
+User -> ATM : withdraw(amount)
+ATM -> BankService : getAccount()
+BankService -> Account : debit(amount)
+ATM -> CashDispenser : dispense(amount)
+ATM -> TransactionService : record(SUCCESS)
+
+ATM -> ATMState : transition to IdleState
+@enduml
