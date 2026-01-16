@@ -1,0 +1,20 @@
+@startuml
+actor User
+participant Machine
+participant ProductService
+participant PaymentService
+participant PaymentStrategy
+
+User -> Machine : addItem(productId)
+Machine -> ProductService : isProductAvailable()
+
+User -> Machine : placeOrder()
+Machine -> PaymentService : processPayment()
+PaymentService -> PaymentStrategy : pay()
+
+Machine -> ProductService : consume()
+Machine -> Machine : setState(Ordered)
+
+User -> Machine : dispense()
+Machine -> Machine : setState(Dispensed)
+@enduml

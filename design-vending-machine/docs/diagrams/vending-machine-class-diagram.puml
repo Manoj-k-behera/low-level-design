@@ -1,0 +1,29 @@
+@startuml
+interface MachineState {
+  +addItem()
+  +placeOrder()
+  +dispense()
+  +cancel()
+}
+
+class Machine {
+  cart
+  setState()
+}
+
+class ProductService
+class PaymentService
+class PaymentStrategy
+class Transaction
+
+Machine *-- MachineState
+Machine --> ProductService
+Machine --> PaymentService
+PaymentService --> PaymentStrategy
+PaymentStrategy --> Transaction
+
+MachineState <|-- IdleState
+MachineState <|-- OrderedState
+MachineState <|-- DispensedState
+
+@enduml

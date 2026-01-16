@@ -1,0 +1,29 @@
+Vending Machine – Low Level Design Requirements
+
+Functional Requirements
+1. The vending machine should allow users to select products.
+2. The vending machine should validate product availability.
+3. The vending machine should calculate total price based on selected items.
+4. The vending machine should support multiple payment methods (UPI, Card, Wallet).
+5. The vending machine should dispense items after successful payment.
+6. The vending machine should allow cancellation before payment.
+7. The vending machine should prevent invalid operations based on current state.
+8. Inventory should be updated only after successful payment.
+
+Non-Functional Requirements
+1. The system should be extensible to add new payment methods.
+2. The system should avoid invalid state transitions.
+3. The design should follow SOLID principles.
+4. The system should be easy to test and maintain.
+5. The design should model real-world vending machine behavior.
+
+Constraints / Assumptions
+1. Single user interacts with the machine at a time.
+2. Inventory is managed locally (no distributed setup).
+3. Payment is synchronous.
+4. Inventory reservation is logical; consumption happens after payment.
+
+Out of Scope
+1. Distributed transactions
+2. Refund processing after dispense
+3. Multi-machine inventory synchronization
